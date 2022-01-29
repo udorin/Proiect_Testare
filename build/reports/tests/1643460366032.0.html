@@ -1,0 +1,110 @@
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Home</title>
+        <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" href="/">Medical Center</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/">Home</a>
+                        </li>
+                        <li><div style="margin-top:8px;">
+    <form id="culture-switcher" action="/?returnUrl=~%2F" method="post">
+        <select name="culture" id="culture-options">
+            <option></option>
+                <option value="en" selected="selected">English</option>
+                <option value="de">German</option>
+                <option value="fr">French</option>
+                <option value="ru">Russian</option>
+                <option value="ja">Japanese</option>
+                <option value="ar">Arabic</option>
+                <option value="en-GB">English (United Kingdom)</option>
+        </select>
+    <input name="__RequestVerificationToken" type="hidden" value="CfDJ8EwZTRkJbWBAt7ukqZFGP7uIahZ3LPB5nr-1flxbJ-E5qRTc4KdOVnWAyIscK5z95DeG8qNZv__oDEwbcX8XRrZ4_zquDHsmB5xOaVbhGjPw-S9JHf8NqlkxCI6uwmB2zlb6mTaomVIrTUUYDKDNno0"></form>
+</div>
+
+
+<script>
+    document.getElementById("culture-options").addEventListener("change", () => {
+        document.getElementById("culture-switcher").submit();
+    });
+</script></li>
+                    </ul>
+                    
+<ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="/Identity/Account/Register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="/Identity/Account/Login">Login</a>
+        </li>
+</ul>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <table class="table culture-table">
+        <tbody><tr>
+            <td style="width:50%;">Culture</td>
+<td>English {en}</td>
+        </tr>
+        <tr>
+            <td>UI Culture</td>
+            <td>en</td>
+        </tr>
+        <tr>
+            <td>UI Culture Parent</td>
+     <td></td>
+        </tr>
+        <tr>
+            <td>Date</td>
+        <td>Saturday, January 29, 2022</td>
+        </tr>
+        <tr>
+            <td>Currency</td>
+        <td>
+                $12,345.00
+            </td>
+        </tr>
+        <tr>
+            <td>Number</td>
+        <td>
+                123.45
+            </td>
+        </tr>
+    </tbody></table>
+</div>
+
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            © 2022 - Medical Center - <a href="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0"></script>
+
+    
+
+
+</body></html>
