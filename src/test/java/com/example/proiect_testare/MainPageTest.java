@@ -42,6 +42,8 @@ public class MainPageTest {
         $x("/html/body/div/main/div/div/form/div[1]/ul/li").getText().contains("A valid password is required");
 
 
+
+
     }
 
     @Test

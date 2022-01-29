@@ -11,4 +11,8 @@ public class MainPage {
     public SelenideElement registerButton = $x("/html/body/div/main/div/div/form/button");
     public SelenideElement loginLink = $x("/html/body/header/nav/div/div/ul[2]/li[2]/a");
     public SelenideElement loginButton = $x("//*[@id=\"account\"]/div[5]/button");
+
+
+
+
 }
