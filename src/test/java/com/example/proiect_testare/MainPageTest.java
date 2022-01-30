@@ -1,16 +1,17 @@
 package com.example.proiect_testare;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
 
-import static com.codeborne.selenide.Condition.attribute;
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
 public class MainPageTest {
@@ -30,35 +31,33 @@ public class MainPageTest {
     @Test
     public void checkRegisterLinkFunctionality() {
         mainPage.registerLink.click();
-
-        $x("/html/body/div/main/div/div/form/h4").isDisplayed();
+        boolean  isDisplayed = $x("/html/body/div/main/div/div/form/h4").isDisplayed();
+        Assertions.assertTrue(isDisplayed);
     }
 
     @Test
-    public void registerAccountUsingOnlyEmail(){
+    public void registerAccountUsingOnlyEmail() {
         mainPage.registerLink.click();
         $x("//*[@id=\"Input_Email\"]").sendKeys("test@gmail.com");
         mainPage.registerButton.click();
-        $x("/html/body/div/main/div/div/form/div[1]/ul/li").getText().contains("A valid password is required");
-
-
-
-
+        boolean isMessageFound = $x("/html/body/div/main/div/div/form/div[1]/ul/li").getText().contains("A valid password is required");
+        Assertions.assertTrue(isMessageFound);
     }
 
     @Test
-    public void registerAccountUsingOnlyPassword(){
+    public void registerAccountUsingOnlyPassword() {
         mainPage.registerLink.click();
 
         $x("//*[@id=\"Input_Password\"]").sendKeys("test1234");
         $x("//*[@id=\"Input_ConfirmPassword\"]").sendKeys("test1234");
         mainPage.registerButton.click();
-        $x("/html/body/div/main/div/div/form/div[1]/ul/li").getText().contains("A valid email is required");
+        boolean isMessageFound = $x("/html/body/div/main/div/div/form/div[1]/ul/li").getText().contains("A valid email is required");
+        Assertions.assertTrue(isMessageFound);
 
     }
 
     @Test
-    public void registerAccountUsingEmailAndPass()  {
+    public void registerAccountUsingEmailAndPass() {
         mainPage.registerLink.click();
 
         $x("//*[@id=\"Input_Email\"]").sendKeys("test1shhs211121221s3@gmail.com");
@@ -66,43 +65,53 @@ public class MainPageTest {
         $x("//*[@id=\"Input_ConfirmPassword\"]").sendKeys("Test1234!");
 
         mainPage.registerButton.click();
-       String value = String.valueOf($x("/html/body/div/main/p").getText().contains("This app does not currently have a real email sender registered, see these docs for how to configure a real email sender. Normally this would be emailed: Click here to confirm your account"));
-
-
+        boolean emailExists = $("div.validation-summary-errors").getText().contains("Username 'test1shhs211121221s3@gmail.com' is already taken.");
+        Assertions.assertTrue(emailExists);
     }
 
 
     @Test
 
-    public void checkLoginFunctinality(){
-    mainPage.loginLink.click();
-    $x("//*[@id=\"account\"]/div[2]").isDisplayed();
+    public void checkLoginFunctinality() {
+        mainPage.loginLink.click();
+        boolean isDisplayed = $x("//*[@id=\"account\"]/div[2]").isDisplayed();
+        Assertions.assertTrue(isDisplayed);
     }
 
     @Test
-    public void loginInUsingEmailAndPass(){
+    public void loginInUsingEmailAndPass() {
         mainPage.loginLink.click();
         $x("//*[@id=\"Input_Email\"]").sendKeys("test@gmail.com");
         $x("//*[@id=\"Input_Password\"]").sendKeys("Test1234!");
         mainPage.loginButton.click();
-        $x("//*[@id=\"account\"]/div[1]/ul/li").getText().contains("Invalid login attempt.");
-        System.out.println($x("//*[@id=\"account\"]/div[1]/ul/li").getText());
-
+        boolean isTextFound = $x("//*[@id=\"account\"]/div[1]/ul/li").getText().contains("Invalid login attempt.");
+        Assertions.assertTrue(isTextFound);
     }
 
     @Test
-    public void selectGermanLanguage(){
+    public void selectGermanLanguage() {
         $x("//*[@id=\"culture-options\"]").click();
         $x("//*[@id=\"culture-options\"]").selectOptionByValue("de");
-        $x("/html/body/header/nav/div/a").getText().contains("Ärztezentrum");
+        boolean isTextFound = $x("/html/body/header/nav/div/a").getText().contains("Ärztezentrum");
+        Assertions.assertTrue(isTextFound);
 
     }
 
     @Test
-    public void selectJapaneseLanguage(){
+    public void selectJapaneseLanguage() {
         $x("//*[@id=\"culture-options\"]").click();
         $x("//*[@id=\"culture-options\"]").selectOptionByValue("ja");
-        $x("/html/body/header/nav/div/a").getText().contains("医療センター");
+        boolean isTextFound = $x("/html/body/header/nav/div/a").getText().contains("医療センター");
+        Assertions.assertTrue(isTextFound);
+
+    }
+
+    @Test
+    public void selectEmptyLanguage() {
+        $x("//*[@id=\"culture-options\"]").selectOption(0);
+
+        List<WebElement> headerElements = webdriver().object().findElements(By.className("nav-item"));
+        Assertions.assertTrue(headerElements.size() > 0);
 
     }
 }
