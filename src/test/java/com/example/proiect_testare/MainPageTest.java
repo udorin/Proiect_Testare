@@ -90,7 +90,6 @@ public class MainPageTest {
 
     @Test
     public void selectGermanLanguage() {
-        $x("//*[@id=\"culture-options\"]").click();
         $x("//*[@id=\"culture-options\"]").selectOptionByValue("de");
         boolean isTextFound = $x("/html/body/header/nav/div/a").getText().contains("Ärztezentrum");
         Assertions.assertTrue(isTextFound);
@@ -99,7 +98,6 @@ public class MainPageTest {
 
     @Test
     public void selectJapaneseLanguage() {
-        $x("//*[@id=\"culture-options\"]").click();
         $x("//*[@id=\"culture-options\"]").selectOptionByValue("ja");
         boolean isTextFound = $x("/html/body/header/nav/div/a").getText().contains("医療センター");
         Assertions.assertTrue(isTextFound);
@@ -109,7 +107,6 @@ public class MainPageTest {
     @Test
     public void selectEmptyLanguage() {
         $x("//*[@id=\"culture-options\"]").selectOption(0);
-
         List<WebElement> headerElements = webdriver().object().findElements(By.className("nav-item"));
         Assertions.assertTrue(headerElements.size() > 0);
 
